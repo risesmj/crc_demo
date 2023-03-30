@@ -19,9 +19,18 @@ class HomeController {
 
   //Polinomios para calculo
   var listPolynomial = <Polynomial>[
-    Polynomial(id: 16, hex: 0x1021, description: "16 bit"),
-    Polynomial(id: 32, hex: 0x04C11DB7, description: "32 bit"),
-    Polynomial(id: 48, hex: 0, description: "48 bit"),
+    Polynomial(
+      id: 16,
+      poly: 0x1021,
+      description: "CRC-16",
+      init: 0x1D0F,
+    ),
+    Polynomial(
+      id: 32,
+      poly: 0x04C11DB7,
+      description: "CRC-32",
+      init: 0xFFFFFFFF,
+    ),
   ];
 
   HomeController({
@@ -45,16 +54,16 @@ class HomeController {
   onPressedButton() {
     //Calcula origem
     final bits = stringToBits(currentContent);
-    currentCRCCalculated = crc.calculate(bits, currentPolynomialSelected.hex);
+    currentCRCCalculated = crc.calculate(bits, currentPolynomialSelected);
 
     //Calcula destino
     final bitsDestiny = stringToBits(currentContentDestiny);
     currentCRCCalculatedDestiny =
-        crc.calculate(bitsDestiny, currentPolynomialSelected.hex);
+        crc.calculate(bitsDestiny, currentPolynomialSelected);
 
     //Valida o CRC de acordo com a mensagem que chegou no destino, com o CRC da origem
     currentStatus = (crc.validate(
-            bitsDestiny, currentPolynomialSelected.hex, currentCRCCalculated))
+            bitsDestiny, currentPolynomialSelected, currentCRCCalculated))
         ? "Válido"
         : "Inválido";
   }

@@ -88,11 +88,11 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Text(
-                "CRC calculado na origem: ${controller.currentCRCCalculated.toRadixString(16)}",
+                "CRC calculado na origem: 0x${controller.currentCRCCalculated.toRadixString(16)}",
                 style: const TextStyle(fontSize: 18, color: Colors.blue),
               ),
               Text(
-                "CRC calculado no destino: ${controller.currentCRCCalculatedDestiny.toRadixString(16)}",
+                "CRC calculado no destino: 0x${controller.currentCRCCalculatedDestiny.toRadixString(16)}",
                 style: const TextStyle(fontSize: 18, color: Colors.green),
               ),
               Text(
